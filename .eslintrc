@@ -1,9 +1,9 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "extends": [
     "react-app",
     "react-app/jest",
-    "eslint:recommend"
+    "eslint:recommended"
   ],
   "env": {
     "node": true
