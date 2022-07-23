@@ -1,6 +1,4 @@
-import React from 'react'
-import styles from './styles.module.css'
-
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
-}
+export { If, Else, ElseIf, IfBlock, Ifs } from './If'
+export { For } from './For'
+export { Switch, Case, Default } from './Switch'
+export { ForEach } from './ForEach'
