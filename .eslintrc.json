@@ -1,0 +1,46 @@
+{
+    "env": {
+        "node": true,
+        "jest": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "version":"18"
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "ignorePatterns": [
+        "node_modules/**",
+        "dist/**",
+        "example/**"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            "tab"
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}
