@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "publish": "npm run build && npm publish",
-    "build": "npm i && npm run test && npx jest . && npx microbundle --no-compress --format cjs",
+    "push": "npm run build && git push",
+    "build": "npm i && npm run test && npx microbundle --no-compress --format cjs",
     "test": "eslint . && jest .",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
