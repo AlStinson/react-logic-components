@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ForEach } from './ForEach';
+import ForEach from './ForEach';
 
 describe('ForEach test block', () => {
 	test('foreach component renders all components', () => {

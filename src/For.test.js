@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { For } from './For';
+import For from './For';
 
 describe('For test block', () => {
 	test('for component renders all components', () => {

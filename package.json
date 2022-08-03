@@ -42,6 +42,9 @@
   "peerDependencies": {
     "react": "^18.2.0"
   },
+  "dependencies": {
+    "prop-types": "^15.8.1"
+  },
   "jest": {
     "testEnvironment": "jsdom"
   }

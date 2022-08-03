@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const Switch = (props) => {
+const Switch = (props) => {
 	const childrensArray = React.Children.toArray(props.children);
 	const output = childrensArray.find(
 		(children) => children.props.value === props.value && children.type === Case
@@ -11,6 +12,22 @@ export const Switch = (props) => {
 	return output ?? defaultChildren ?? null;
 };
 
-export const Case = (props) => props.children;
+Switch.propTypes = {
+	value: PropTypes.any.isRequired,
+	children: PropTypes.node.isRequired,
+};
 
-export const Default = (props) => props.children;
+
+const Case = (props) => props.children;
+
+Case.propTypes = {
+	children: PropTypes.node,
+};
+
+const Default = (props) => props.children;
+
+Default.propTypes = {
+	children: PropTypes.node,
+};
+
+export { Switch, Case, Default };

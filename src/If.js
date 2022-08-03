@@ -1,14 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const If = (props) => {
+const If = (props) => {
 	return props.condition ? props.children : null;
 };
 
-export const Else = (props) => props.children;
+If.propTypes = {
+	condition: PropTypes.bool.isRequired,
+	children: PropTypes.node.isRequired,
+};
 
-export const ElseIf = If;
+const Else = (props) => props.children;
 
-export const IfBlock = (props) => {
+Else.propTypes = {
+	children: PropTypes.node.isRequired,
+};
+
+const ElseIf = If;
+
+const IfBlock = (props) => {
 	const childrenArray = React.Children.toArray(props.children);
 	const component = childrenArray.find(
 		(children) => children.props.condition || children.type === Else
@@ -16,4 +26,10 @@ export const IfBlock = (props) => {
 	return component ?? null;
 };
 
-export const Ifs = IfBlock;
+IfBlock.propTypes = {
+	children: PropTypes.node,
+};
+
+const Ifs = IfBlock;
+
+export {If, Else, ElseIf, IfBlock, Ifs};
