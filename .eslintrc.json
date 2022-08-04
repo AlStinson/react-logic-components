@@ -4,16 +4,21 @@
         "jest": true
     },
     "plugins": [
-        "react"
+        "react",
+        "jest",
+        "testing-library"
     ],
     "settings": {
-        "react":{
-            "version":"18"
+        "react": {
+            "version": "18"
         }
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:jest/recommended",
+        "plugin:jest/style",
+        "plugin:testing-library/react"
     ],
     "parserOptions": {
         "ecmaFeatures": {
