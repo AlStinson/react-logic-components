@@ -1,6 +1,6 @@
 {
   "name": "react-logic-components",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This library add components that simulates If, For and other statements in jsx",
   "author": {
     "name": "Javier Delgado Cruces",
@@ -18,8 +18,7 @@
     "dist"
   ],
   "scripts": {
-    "publish": "npm run build && npm publish",
-    "push": "npm run build && git push",
+    "public": "npm run build && npm publish",
     "build": "npm i && npm run test && rmdir /s/q dist && npx babel src -d dist -s --ignore \"src/**/*.test.js\"",
     "test": "eslint . && jest .",
     "eslint": "eslint .",
