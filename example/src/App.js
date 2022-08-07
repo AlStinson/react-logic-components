@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Case, Default, If, Switch, For } from 'react-logic-components'
 
 const App = () => {
+
+  const [maxValue, setMaxValue] = useState(5);
+
   const ifCondition = true
+
+  const changeMaxValue = () => setMaxValue(last => last + 1);
 
   return (
     <div>
@@ -26,11 +31,11 @@ const App = () => {
           <p>Default value should not render</p>
         </Default>
       </Switch>
-
+      <button onClick={changeMaxValue}>Add +1 to the max value</button>
       <For
         start={2}
-        maxValue={5}
-        element={(props) => <p key={props.index}>{props.index}. From 2 to 5 should be render</p>}
+        maxValue={maxValue}
+        element={(props) => <p key={props.index}>{props.index}. From 2 to {maxValue} should be render</p>}
       />
     </div>
   )
