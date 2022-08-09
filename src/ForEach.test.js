@@ -24,7 +24,7 @@ describe('ForEach test block', () => {
 		const array = ['1', '2', '3'];
 		render(
 			<ForEach array={array}>
-				{(props) => <p key={props.index}>{props.value}</p>}
+				{(props) => <p>{props.value}</p>}
 			</ForEach>
 		);
 		const elem1 = screen.getByText('1');
@@ -42,8 +42,8 @@ describe('ForEach test block', () => {
 			<ForEach array={array1}>
 				<ForEach
 					array={array2}
-					element={({ index, value }) => (
-						<p key={index}>{String(value[0]) + String(value[1])}</p>
+					element={({ value }) => (
+						<p>{String(value[0]) + String(value[1])}</p>
 					)}
 				/>
 			</ForEach>

@@ -9,7 +9,7 @@ describe('For test block', () => {
 			<For
 				start={1}
 				maxValue={3}
-				element={(props) => <p key={props.index}>{props.index}</p>}
+				element={(props) => <p>{props.index}</p>}
 			/>
 		);
 		const elem1 = screen.getByText('1');
@@ -23,7 +23,7 @@ describe('For test block', () => {
 	test('for component renders all components when element defined on children', () => {
 		render(
 			<For start={1} maxValue={3}>
-				{(props) => <p key={props.index}>{props.index}</p>}
+				{(props) => <p>{props.index}</p>}
 			</For>
 		);
 		const elem1 = screen.getByText('1');
@@ -40,7 +40,7 @@ describe('For test block', () => {
 				<For
 					maxValue={1}
 					element={({ index }) => (
-						<p key={index}>{String(index[0]) + String(index[1])}</p>
+						<p>{String(index[0]) + String(index[1])}</p>
 					)}
 				/>
 			</For>

@@ -35,7 +35,7 @@ const App = () => {
       <For
         start={2}
         maxValue={maxValue}
-        element={(props) => <p key={props.index}>{props.index}. From 2 to {maxValue} should be render</p>}
+        element={(props) => <p>{props.index}. From 2 to {maxValue} should be render</p>}
       />
     </div>
   )

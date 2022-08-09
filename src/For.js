@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const For = (props) => {
 
-	const { 
-		start, 
-		maxValue, 
-		decrement, 
-		nestedIndex, 
-		propsToPropagate 
+	const {
+		start,
+		maxValue,
+		decrement,
+		nestedIndex,
+		propsToPropagate
 	} = props;
 
 	const element = props.element ?? props.children;
@@ -19,17 +19,21 @@ const For = (props) => {
 		if (element.type === For) {
 			const forProps = {
 				...element.props,
+				key: index,
 				nestedIndex: nestedIndex ? index : [index],
 				propsToPropagate: {
 					...propsToPropagate,
 					...element.props.propsToPropagate
 				},
-				key: index
 			};
 			childrens.push(<For {...forProps} />);
 		} else {
-			const elementProps = { ...propsToPropagate, index };
-			childrens.push(element(elementProps));
+			const elementProps = {
+				...propsToPropagate,
+				key: index,
+				index
+			};
+			childrens.push(React.createElement(element, elementProps));
 		}
 	}
 	return childrens;
