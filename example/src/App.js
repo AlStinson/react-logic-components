@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Case, Default, If, Switch, For } from 'react-logic-components'
+import { Case, Default, If, Switch, For } from 'react-logic-components';
 
 const App = () => {
 
