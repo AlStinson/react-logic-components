@@ -1,6 +1,6 @@
 {
   "name": "react-logic-components",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This library add components that simulates If, For and other statements in jsx",
   "author": {
     "name": "Javier Delgado Cruces",
