@@ -22,6 +22,7 @@ const Case = (props) => props.children;
 
 Case.propTypes = {
 	children: PropTypes.node,
+	value: PropTypes.any,
 };
 
 const Default = (props) => props.children;
