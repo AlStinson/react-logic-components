@@ -1,13 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import For from './For';
+import message from './ForLogsMessages';
 
 describe('For test block', () => {
 	test('for component renders all components', () => {
 		render(
 			<For
-				start={1}
-				maxValue={3}
+				from={1}
+				to={3}
 				element={(props) => <p>{props.index}</p>}
 			/>
 		);
@@ -21,7 +22,7 @@ describe('For test block', () => {
 
 	test('for component renders all components when element defined on children', () => {
 		render(
-			<For start={1} maxValue={3}>
+			<For from={1} to={3}>
 				{(props) => <p>{props.index}</p>}
 			</For>
 		);
@@ -35,12 +36,12 @@ describe('For test block', () => {
 
 	test('for component multiindex renders all components', () => {
 		render(
-			<For start={1} maxValue={2}>
+			<For from={1} to={2}>
 				<For
-					maxValue={1}
-					element={({ index }) => (
-						<p>{String(index[0]) + String(index[1])}</p>
-					)}
+					from={0}
+					to={1}
+					element={({ index }) => <p>{String(index[0]) + String(index[1])}</p>}
+					nestedFor
 				/>
 			</For>
 		);
@@ -52,5 +53,19 @@ describe('For test block', () => {
 		expect(elem11).toBeInTheDocument();
 		expect(elem20).toBeInTheDocument();
 		expect(elem21).toBeInTheDocument();
+	});
+
+	test('for component multiindex without nestedFor throws error', () => {
+		console.error = jest.fn();
+		render(
+			<For from={1} to={2}>
+				<For
+					from={0}
+					to={1}
+					element={({ index }) => <p>{String(index[0]) + String(index[1])}</p>}
+				/>
+			</For>
+		);
+		expect(console.error).toHaveBeenCalledWith(message.nestedFor);
 	});
 });
