@@ -1,44 +1,44 @@
-import React, { useState } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Case, Default, If, Switch, For } from 'react-logic-components';
+import { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import { Case, Switch } from 'react-logic-components';
+
+import NavBarComponent from './components/NavBarComponent';
+import IfPage from './pages/IfPage';
+
+
+const pages = {
+  index: 'index',
+  if: 'If.jsx',
+  switch: 'Switch.jsx',
+  for: 'For.jsx',
+  foreach: 'ForEach.jsx',
+}
+
+const pagesArray = Object.keys(pages).map(key => pages[key]);
 
 const App = () => {
 
-  const [maxValue, setMaxValue] = useState(5);
+  const [page, setPage] = useState(pages.index)
 
-  const ifCondition = true
+  const navBarProps = { page, setPage, pagesArray };
 
-  const changeMaxValue = () => setMaxValue(last => last + 1);
-
+  console.log(page);
   return (
-    <div>
-      <If condition={false}>
-        <p>This if component should not render </p>
-      </If>
-
-      <If condition={ifCondition}>
-        <p>This if component should render</p>
-      </If>
-
-      <Switch value={2}>
-        <Case value={1}>
-          <p> Value 1 should not render</p>
-        </Case>
-        <Case value={2}>
-          <p>Value 2 should render</p>
-        </Case>
-        <Default>
-          <p>Default value should not render</p>
-        </Default>
-      </Switch>
-      <button onClick={changeMaxValue}>Add +1 to the max value</button>
-      <For
-        start={2}
-        maxValue={maxValue}
-        element={(props) => <p>{props.index}. From 2 to {maxValue} should be render</p>}
-      />
-    </div>
-  )
+    <>
+      <NavBarComponent {...navBarProps} />
+      <Container as="main">
+          <Switch value={page}>
+            <Case value={pages.index}></Case>
+            <Case value={pages.if}><IfPage /></Case>
+            <Case value={pages.switch}></Case>
+            <Case value={pages.for}></Case>
+            <Case value={pages.foreach}></Case>
+          </Switch>
+      </Container>
+    </>
+  );
 }
 
 export default App

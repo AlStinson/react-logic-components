@@ -58,7 +58,7 @@ ForEach.propTypes = {
 	propsToPropagate: PropTypes.object,
 	valueToProps: PropTypes.func,
 	nestedForEach: PropTypes.bool,
-	nestedValue: PropTypes.arrayOf(PropTypes.any),
+	nestedValue: PropTypes.array,
 };
 
 ForEach.defaultProps = {
