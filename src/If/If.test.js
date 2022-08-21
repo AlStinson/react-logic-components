@@ -6,7 +6,7 @@ import ElseIf from './ElseIf';
 import Else from './Else';
 import messages from './IfBlockLogsMessages';
 
-
+// TODO: separate test from if, else, elseif;
 describe('If tests', () => {
 	test('if component renders element with props if condition is true', () => {
 		const p = props => <p>{props.string}</p>;

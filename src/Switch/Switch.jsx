@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import messages from './SwitchLogsMessages';
+import Case from './Case';
+import Default from './Default';
 import onDevelopment from '../utils/DevUtils';
-import messages from './IfBlockLogsMessages';
-import Else from './Else';
-import ElseIf from './ElseIf';
-import If from './If';
 import { nullFunc } from '../utils/FunctionsUtils';
 
-const validChildrens = [If, ElseIf, Else];
+const validChildrens = [Case, Default];
 
-const IfBlock = props => {
+const Switch = props => {
 	const childrens = props.children;
 	const childrenArray = React.Children.toArray(childrens);
 	const childrenLength = childrenArray.length;
@@ -29,26 +28,12 @@ const IfBlock = props => {
 		}
 
 		onDevelopment(() => {
-			if (i == 0 && type !== If) {
-				console.warn(messages.fstChildren);
-			}
-			if (childrenLength === 1 && type === If) {
-				console.warn(messages.onlyIf);
-			}
-			if (i == (childrenLength - 1) && type === If) {
-				console.warn(messages.lstChildren);
-			}
-			if (i > 0 && i < (childrenLength - 1) && type !== ElseIf) {
-				console.warn(messages.intermediateChildren);
+			if (i != (childrenLength - 1) && type === Default) {
+				console.warn(messages.defaultNotLast);
 			}
 		});
 
-		if (type === If && childrenProps.condition) {
-			return children;
-		}
-
-		if (type === Else || childrenProps.condition) {
-			//TODO: no element or children should show a warning
+		if (type === Default || childrenProps.value === props.value) {
 			const elementToRender = childrenProps.element ?? childrenProps.children ?? nullFunc;
 			return React.createElement(elementToRender, childrenProps.elementProps);
 		}
@@ -57,8 +42,9 @@ const IfBlock = props => {
 	return null;
 };
 
-IfBlock.propTypes = {
+Switch.propTypes = {
+	value: PropTypes.any,
 	children: PropTypes.node,
 };
 
-export default IfBlock;
+export default Switch;

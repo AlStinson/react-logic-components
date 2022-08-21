@@ -1,15 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Case, Default, Switch } from './Switch';
+import Case from './Case';
+import Default from './Default';
+import Switch from './Switch';
 
 describe('Switch test block', () => {
+	// TODO: validate with props;
 	test('switch component renders only correspondent component on that component case', () => {
 		render(
 			<Switch value={2}>
-				<Case value={1}>1</Case>
-				<Case value={2}>2</Case>
-				<Case value={3}>3</Case>
-				<Default>0</Default>
+				<Case value={1} element={() => 1}/>
+				<Case value={2} element={() => 2}/>
+				<Case value={3} element={() => 3}/>
+				<Default element={() => 0}/>
 			</Switch>
 		);
 		const elem1 = screen.queryByText('1');
@@ -25,10 +28,10 @@ describe('Switch test block', () => {
 	test('switch component renders only default correspondent component on no case match', () => {
 		render(
 			<Switch value={4}>
-				<Case value={1}>1</Case>
-				<Case value={2}>2</Case>
-				<Case value={3}>3</Case>
-				<Default>0</Default>
+				<Case value={1} element={() => 1}/>
+				<Case value={2} element={() => 2}/>
+				<Case value={3} element={() => 3}/>
+				<Default element={() => 0}/>
 			</Switch>
 		);
 		const elem1 = screen.queryByText('1');

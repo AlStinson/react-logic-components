@@ -1,16 +1,9 @@
 import PropTypes from 'prop-types';
 import messages from './IfBlockLogsMessages';
-import onDevelopment from '../utils/DevUtils';
+import elementAndChildrenCheck from '../utils/ElementAndChildrenCheck';
 
 const ElseIf = props => {
-  
-	onDevelopment(() => {
-		const { element, children } = props;
-		if (element && children){
-			console.warn(messages.elementAndChildren);
-		}
-	});
-
+	elementAndChildrenCheck(props, messages);
 	return null;
 };
 

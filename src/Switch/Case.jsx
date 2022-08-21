@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 import elementAndChildrenCheck from '../utils/ElementAndChildrenCheck';
-import messages from './IfBlockLogsMessages';
+import messages from './SwitchLogsMessages';
 
-const Else = props => {
+const Case = props => {
 	elementAndChildrenCheck(props, messages);
 	return null;
 };
 
-Else.propTypes = {
+Case.propTypes = {
+	value: PropTypes.any,
 	element: PropTypes.elementType,
 	elementProps: PropTypes.object,
 	children: PropTypes.elementType,
 };
 
-export default Else;
+export default Case;

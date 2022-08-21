@@ -1,18 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import onDevelopment from '../utils/DevUtils';
+import elementAndChildrenCheck from '../utils/ElementAndChildrenCheck';
 import { nullFunc } from '../utils/FunctionsUtils';
 import messages from './IfBlockLogsMessages';
 
 const If = props => {
 	const { condition, element, elementProps, children } = props;
-
-	onDevelopment(() => {
-		if (element && children){
-			console.warn(messages.elementAndChildren);
-		}
-	});
-
+	elementAndChildrenCheck(props, messages);
 	const elementToRender = element ?? children ?? nullFunc;
 	return condition ? React.createElement(elementToRender, elementProps) : null;
 };
