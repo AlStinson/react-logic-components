@@ -66,6 +66,6 @@ describe('For test block', () => {
 				/>
 			</For>
 		);
-		expect(console.error).toHaveBeenCalledWith(message.nestedFor);
+		expect(console.error).toHaveBeenCalledWith(message.noInvalidPrerender);
 	});
 });

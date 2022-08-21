@@ -3,11 +3,11 @@ import { render, screen } from '@testing-library/react';
 import ForEach from './ForEach';
 
 describe('ForEach test block', () => {
-	test('foreach component renders all components', () => {
+	test('foreach component renders all components from array', () => {
 		const array = ['1', '2', '3'];
 		render(
 			<ForEach
-				array={array}
+				iterable={array}
 				element={(props) => <p key={props.index}>{props.value}</p>}
 			/>
 		);
@@ -19,10 +19,10 @@ describe('ForEach test block', () => {
 		expect(elem3).toBeInTheDocument();
 	});
 
-	test('foreach component renders all components when element defined on children', () => {
+	test('foreach component renders all components from array when element defined on children', () => {
 		const array = ['1', '2', '3'];
 		render(
-			<ForEach array={array}>
+			<ForEach iterable={array}>
 				{(props) => <p>{props.value}</p>}
 			</ForEach>
 		);
@@ -38,12 +38,13 @@ describe('ForEach test block', () => {
 		const array1 = ['1', '2'];
 		const array2 = ['0', '1'];
 		render(
-			<ForEach array={array1}>
+			<ForEach iterable={array1}>
 				<ForEach
-					array={array2}
+					iterable={array2}
 					element={({ value }) => (
 						<p>{String(value[0]) + String(value[1])}</p>
 					)}
+					nestedForEach
 				/>
 			</ForEach>
 		);

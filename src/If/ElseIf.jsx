@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import messages from './IfBlockLogsMessages';
-import elementAndChildrenCheck from '../utils/ElementAndChildrenCheck';
+import { elementAndChildrenCheck } from '../utils/Checkers';
 
 const ElseIf = props => {
 	elementAndChildrenCheck(props, messages);

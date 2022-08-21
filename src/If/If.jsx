@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import elementAndChildrenCheck from '../utils/ElementAndChildrenCheck';
+import { elementAndChildrenCheck } from '../utils/Checkers';
 import { nullFunc } from '../utils/FunctionsUtils';
 import messages from './IfBlockLogsMessages';
 

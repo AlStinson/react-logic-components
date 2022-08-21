@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import elementAndChildrenCheck from '../utils/ElementAndChildrenCheck';
+import { elementAndChildrenCheck } from '../utils/Checkers';
 import messages from './IfBlockLogsMessages';
 
 const Else = props => {

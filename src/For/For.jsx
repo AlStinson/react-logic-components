@@ -1,37 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import elementAndChildrenCheck from '../utils/ElementAndChildrenCheck';
+import { elementAndChildrenCheck, elementToRenderCheck } from '../utils/Checkers';
 import { nullFunc } from '../utils/FunctionsUtils';
-import onDevelopment from '../utils/DevUtils';
 import messages from './ForLogsMessages';
 
 const For = (props) => {
 
-	const { from, to, step, element, children, propsToPropagate, indexToProps, indexToKey, nestedIndex, nestedFor } = props;
+	const { from, to, step, element, children, propsToPropagate, indexToProps, nestedIndex, nestedFor } = props;
 
 	if (nestedFor) {
 		return null;
 	}
 
-	elementAndChildrenCheck(props, messages);
 	const elementToRender = element ?? children ?? nullFunc;
-
-	onDevelopment(() => {
-		if (React.isValidElement(elementToRender) && elementToRender.type !== For) {
-			console.error(messages.noForReactElement);
-		}
-		if (elementToRender.type === For && !elementToRender.props.nestedFor) {
-			console.error(messages.nestedFor);
-		}
-	});
-
 	const childrens = [];
+
+	elementAndChildrenCheck(props, messages);
+	elementToRenderCheck(elementToRender, For, 'nestedFor', messages);
+
+	// TODO: check if for loop will stop;
+	// TODO: auto step decrement; 
 	for (let i = from; i <= to; i += step) {
 		const index = nestedIndex ? [...nestedIndex, i] : i;
 		const elementProps = {
+			key: index,
 			...propsToPropagate,
 			...indexToProps(index),
-			key: indexToKey(index),
 		};
 
 		if (elementToRender.type === For) {
@@ -52,12 +46,11 @@ const For = (props) => {
 For.propTypes = {
 	from: PropTypes.number.isRequired,
 	to: PropTypes.number.isRequired,
-	step: PropTypes.number,
+	step: PropTypes.number.isRequired,
 	element: PropTypes.elementType,
 	children: PropTypes.oneOfType([PropTypes.elementType, PropTypes.element]),
 	propsToPropagate: PropTypes.object,
 	indexToProps: PropTypes.func,
-	indexToKey: PropTypes.func,
 	nestedFor: PropTypes.bool,
 	nestedIndex: PropTypes.arrayOf(PropTypes.number),
 };
@@ -65,7 +58,6 @@ For.propTypes = {
 For.defaultProps = {
 	step: 1,
 	indexToProps: index => ({ index }),
-	indexToKey: index => index,
 };
 
 export default For;
