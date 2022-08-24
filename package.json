@@ -13,21 +13,23 @@
     "url": "https://github.com/AlStinson/react-logic-components"
   },
   "keywords": [],
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "umd:main": "dist/index.m.js",
-  "source": "src/index.js",
+  "exports": {
+    "./If": "./dist/If",
+    "./Switch": "./dist/Switch",
+    "./For": "./dist/For",
+    "./ForEach": "./dist/ForEach"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
     "public": "npm run build && npm publish",
-    "build": "npm i && npm run test && npx microbundle",
+    "build": "npm i && npm run test && npx microbundle \"src/*.jsx\" --target node --format cjs --no-sourcemap",
     "test": "eslint . && jest . --config .jestrc.json",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "start:test": "jest --watch --config .jestrc.json",
-    "start:build": "npx microbundle watch --format cjs",
+    "start:build": "npx microbundle watch \"src/*.jsx\" --target node --format cjs --no-sourcemap",
     "start:example": "cd example && npm i && npm run start"
   },
   "devDependencies": {

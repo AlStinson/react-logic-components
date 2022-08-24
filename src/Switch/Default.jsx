@@ -2,15 +2,15 @@ import PropTypes from 'prop-types';
 import { elementAndChildrenCheck } from '../utils/Checkers';
 import messages from './SwitchLogsMessages';
 
-const Case = props => {
+const Default = props => {
 	elementAndChildrenCheck(props, messages);
 	return null;
 };
 
-Case.propTypes = {
+Default.propTypes = {
 	element: PropTypes.elementType,
 	elementProps: PropTypes.object,
 	children: PropTypes.elementType,
 };
 
-export default Case;
+export default Default;
